@@ -21,39 +21,42 @@ This project demonstrates clean architecture, RESTful APIs, and database integra
 
 This application follows a **3-Tier Architecture (Client–Server Model)**:
 
+            ┌────────────────────────┐
+            │       Frontend         │
+            │   (React + Vite)       │
+            └───────────┬────────────┘
+                        |HTTP Requests(RESTAPI)
+                        ▼
+            ┌────────────────────────┐
+            │      Backend API       │
+            │   (Spring Boot)        │
+            └───────────┬────────────┘
+                        │  JPA / Hibernate
+                        ▼
+            ┌────────────────────────┐
+            │        Database        │
+            │         (MySQL)        │
+            └────────────────────────┘
 
-                ┌────────────────────────┐
-                │       Frontend         │
-                │   (HTML / CSS / JS)    │
-                └───────────┬────────────┘
-                            │  HTTP Requests
-                            ▼
-                ┌────────────────────────┐
-                │      Backend API       │
-                │   (Node.js / Express)  │
-                └───────────┬────────────┘
-                            │  SQL Queries
-                            ▼
-                ┌────────────────────────┐
-                │        Database        │
-                │         (MySQL)        │
-                └────────────────────────┘
-```
+### 🔹 ┘
 
-### 🔹 Architecture Explanation
+🔹 Architecture Explanation
 
-- **Frontend Layer:** Provides user interface to interact with the system.
-- **Backend Layer:** Handles API requests, business logic, and server operations.
-- **Database Layer:** Stores employee data securely and permanently.
+Frontend Layer: Built using React (Vite) for a fast and interactive UI.
+Backend Layer: Developed with Spring Boot to handle business logic and REST APIs.
+Database Layer: MySQL database to store employee data securely.
+Persistence Layer: Uses JPA (Hibernate) for database operations
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript  
-- **Backend:** Node.js / Express  
-- **Database:** MySQL  
-- **API Type:** RESTful API  
+- Frontend: React (Vite), HTML, CSS, JavaScript
+- Backend: Spring Boot, Java
+- Database: MySQL
+- ORM: JPA (Hibernate)
+- Build Tool: Maven
+- API Type: RESTful API 
 
 ---
 
@@ -63,22 +66,29 @@ This application follows a **3-Tier Architecture (Client–Server Model)**:
 employee-management-system/
 │
 ├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   └── server.js
+│   ├── src/main/java/
+│   │   ├── controller/
+│   │   ├── service/
+│   │   ├── repository/
+│   │   └── model/
+│   ├── src/main/resources/
+│   │   └── application.properties
+│   └── pom.xml
 │
 ├── frontend/
 │   ├── public/
 │   └── src/
+│       ├── components/
+│       ├── pages/
+│       └── App.jsx
 │
 ├── database/
 │   └── schema.sql
 │
 ├── screenshots/
-│   ├── EmpManagement.png
-│   ├── AddEmp.png
-│   └── EditEmp.png
+│   ├── dashboard.png
+│   ├── add-employee.png
+│   └── edit-employee.png
 │
 └── README.md
 
@@ -106,27 +116,25 @@ git clone https://github.com/sathwik-chotu/employee-management-system.git
 cd employee-management-system
 
 
-### 2️⃣ Backend Setup
+### 2️⃣ Backend Setup (Spring Boot)
 
-```bash
 cd backend
-npm install
-npm start
-```
+mvn clean install
+mvn spring-boot:run
 
-### 3️⃣ Frontend Setup
+### 3️⃣ Frontend Setup (React + Vite)
 
-```bash
 cd frontend
 npm install
-npm start
+npm run dev
 ```
+
 
 ### 4️⃣ Database Setup
 
-1. Create a MySQL database.
-2. Import the `schema.sql` file.
-3. Update database credentials in backend configuration file.
+1. Create a MySQL database
+Import the schema.sql file
+Update database credentials in application.properties
 
 
 ## 📌 API Endpoints
